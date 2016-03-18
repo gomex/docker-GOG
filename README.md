@@ -25,7 +25,7 @@ docker build -t gogdocker:postgresql .
 # vá para o diretório raiz do projeto
 docker build -t gogdocker:gog.app .
 ```
-> - Execute os container
+> - Execute os containers
 ```
 # Montagem do container com o Banco de Dados 
 docker run --name postgre9.3 -p 5434:5432 -e POSTGRES_USER=clelsonrodrigues -e POSTGRES_DB=GOG -e POSTGRES_PASSWORD=123456 -d gogdocker:postgresql
@@ -35,7 +35,7 @@ docker run --name postgre9.3 -p 5434:5432 -e POSTGRES_USER=clelsonrodrigues -e P
 docker run -it -p 8080:8080 -p 9990:9990 -e JBOSS_PASS="jboss" -e HOSTNAMELINK="postgre9.3" --link postgre9.3 --name gog gogdocker:gog.app
 ```
 > - Utilize o sistema
->   - Acesso o sistema utilzando um Browser: http://localhost:8080/GOG
+>   - Acesse o sistema utilizando um Browser: http://localhost:8080/GOG
 
 A imagem a seguir ilustra como este projeto deve ser utilizado:
 ![Como utilizar este projeto](/arquivos/DockerFluxoUtilizacao.jpg)
@@ -58,7 +58,7 @@ Projetamos o Docker mantendo em mente o conceito de micro serviços. Neste senti
     - vim
     - GOG - deploy
 
-A imagem a seguir ilustra como este projeto foi projetado e mostra como utilizar o docker para montar os serviços envolvidos:
+A imagem a seguir ilustra a utilização do Docker foi projetada para o sistema GOG; isto ajuda a entender como utilizar o docker para montar os serviços envolvidos:
 ![Como foi projetada a utilização do Docker no sistema GOG](/arquivos/DockerMontagemAmbiente.jpg)
 
 
