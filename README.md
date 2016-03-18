@@ -1,4 +1,4 @@
-# GOG no Docker - docker-GOG
+# GOG com Docker
 Repositório com arquivos para "dockerizar" o sistema GOG: códigos para criar "images" e "containers" do sistema GOG utilizando-se do Docker
 
 ## Comandos para utilização do docker neste projeto 
@@ -13,16 +13,17 @@ Para usar este projeto e montar o sistema GOG em sua máquina execute apenas qua
 
 > - Baixe o projeto 
 ```
-git clone <URL do projeto>
+git clone https://github.com/culturagovbr/docker-GOG.git
 ```
 > - Monte as imagens
 ```
-# vá para o diretório 'postgresql_9.3'
+# Imagem docker com Banco de Dados
 cd postgresql_9.3
 docker build -t gogdocker:postgresql .
 ```
 ```
-# vá para o diretório raiz do projeto
+# Imagem docker com aplicação GOG
+cd ..
 docker build -t gogdocker:gog.app .
 ```
 > - Execute os containers
@@ -31,11 +32,11 @@ docker build -t gogdocker:gog.app .
 docker run --name postgre9.3 -p 5434:5432 -e POSTGRES_USER=clelsonrodrigues -e POSTGRES_DB=GOG -e POSTGRES_PASSWORD=123456 -d gogdocker:postgresql
 ```
 ```
-# Montagem do container com o Servidor de Aplicação - contendo o sistema GOG
+# Montagem do container com o Servidor de Aplicação
 docker run -it -p 8080:8080 -p 9990:9990 -e JBOSS_PASS="jboss" -e HOSTNAMELINK="postgre9.3" --link postgre9.3 --name gog gogdocker:gog.app
 ```
-> - Utilize o sistema
->   - Acesse o sistema utilizando um Browser: http://localhost:8080/GOG
+> - Acesse a aplicação
+>   - http://localhost:8080/GOG
 
 A imagem a seguir ilustra como este projeto deve ser utilizado:
 ![Como utilizar este projeto](/arquivos/DockerFluxoUtilizacao.jpg)
