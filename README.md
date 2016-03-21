@@ -16,17 +16,22 @@ Para usar este projeto e montar o sistema GOG em sua máquina execute apenas qua
 git clone https://github.com/culturagovbr/docker-GOG.git
 ```
 > - Monte as imagens
+
+> É necessário montar duas "images" docker do projeto: uma para o serviço de Banco de Dados (que pode ser acessada a partir do Dockerfile mantido no diretório "postgresql_9.3") ...
 ```
 # Imagem docker com Banco de Dados
 cd postgresql_9.3
 docker build -t gogdocker:postgresql .
 ```
+> ... e outra para o serviço contendo a aplicação (que pode ser produzida a partir do diretório raiz deste projeto)
 ```
 # Imagem docker com aplicação GOG
 cd ..
 docker build -t gogdocker:gog.app .
 ```
 > - Execute os containers
+
+> Para subir os dois "containers" dockers do projeto deve-se utilizar, na mesma ordem em que estão declarados, os seguintes comandos:
 ```
 # Montagem do container com o Banco de Dados 
 docker run --name postgre9.3 -p 5434:5432 -e POSTGRES_USER=clelsonrodrigues -e POSTGRES_DB=GOG -e POSTGRES_PASSWORD=123456 -d gogdocker:postgresql
